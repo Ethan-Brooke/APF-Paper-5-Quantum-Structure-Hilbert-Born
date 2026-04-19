@@ -1,0 +1,664 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage[colorlinks=true,linkcolor=black,citecolor=black,urlcolor=black]{hyperref}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{microtype}
+\setlength{\parskip}{0.65em}
+\setlength{\parindent}{0pt}
+
+\title{Paper 5 --- REPRESENTATIONS (Quantum): Quantum Structure from Finite Enforceability}
+\author{E. Brooke}
+\date{}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+This paper derives the mathematical structure of quantum mechanics---Hilbert space, the Born
+ rule, tensor products, unitarity, and CPTP dynamics---from the admissibility framework established
+ in Papers 1--4. Quantum structure is not postulated but emerges as the minimal bookkeeping
+ required to represent coherent, jointly enforceable distinctions under finite capacity. The derivation
+ proceeds without assuming probability, dynamics, or any quantum postulates.
+
+ This February 2026 release incorporates the record-locking channel formalization (T9/L3-$\mu$), which
+ provides an explicit algebraic model for measurement as irreversible record formation on M =
+ M_sys $\otimes$ Z_R, yielding k! orthogonal history sectors. The connection to the derived gauge
+ structure (T_gauge, T4F) is made explicit: quantum structure and matter content are jointly
+ constrained by the same capacity architecture.
+\end{abstract}
+
+\section{Introduction}
+
+
+
+\subsection{The Question}
+
+Why does quantum mechanics have the mathematical structure it does? Standard presentations
+
+take this structure as given: Hilbert spaces, complex amplitudes, the Born rule, tensor products,
+
+unitary evolution. These are axioms or postulates, accepted because they work. But the formalism
+
+permits vastly more structure than nature realizes. Why the specific subset that we observe?
+
+
+
+\subsection{The Answer}
+
+Quantum structure is not arbitrary. It is the minimal bookkeeping required to track admissible
+
+distinctions under finite enforceability. This paper shows: (1) Linearity arises from coherence
+
+(interference closure). (2) Inner products arise from admissibility-invariant overlap. (3) Complex
+
+numbers arise from continuous reversible symmetry. (4) Tensor products arise from compositional
+
+closure. (5) The Born rule is the unique admissibility-invariant probability measure. (6) Unitarity
+
+preserves admissibility under reversible evolution. (7) CPTP maps preserve admissibility under
+
+general evolution. No quantum postulates are assumed. The structure is forced by admissibility.
+
+
+
+\subsection{What This Paper Assumes}
+
+
+
+This paper assumes: Paper 1 (SPINE), Paper 2 (STRUCTURE), Paper 3 (LEDGERS), Paper 4
+
+(CONSTRAINTS). It also assumes the bilinearity regime: the interaction functional I_$\Gamma$ is
+
+approximately bilinear. This is a regime condition, not a universal truth.
+
+
+
+\subsection{What This Paper Does NOT Assume}
+
+Hilbert space (derived), complex numbers (derived), Born rule (derived), unitarity (derived),
+
+measurement postulates (regime transitions, not postulates), any quantum axioms.
+
+
+
+\section{Coherence and Linear Structure}
+
+
+
+\subsection{Coherent Distinctions}
+
+A set of distinctions is coherent if they can be reversibly refined, recombined, and undone without
+
+violating admissibility. Coherence means distinctions can be made finer (refined), refined
+
+distinctions can be recombined, the refinement can be undone (reversibility), and all operations
+
+preserve admissibility.
+
+
+
+\subsection{Interference Closure}
+
+Coherence forces a closure property: if two refinement paths lead to the same physical situation,
+
+their bookkeeping must agree. Consider a distinction d that can be refined two ways: Path 1: d $\to$
+
+{d_1, d_2}, Path 2: d $\to$ {d_1′, d_2′}. If these paths can be coherently recombined, the
+
+bookkeeping structure must be closed under such recombinations. This is interference closure.
+
+
+
+\subsection{Linearity}
+
+\textbf{Theorem. Interference closure forces linear structure on the space of coherent realizations.}
+
+The space of coherent bookkeeping states forms a vector space over a division algebra.
+
+
+
+\section{Inner Products and Complex Structure}
+
+
+
+\subsection{Admissibility-Invariant Overlap}
+
+A similarity measure between coherent realizations must exist that is invariant under admissible
+
+reversible transformations and distributive over refinements. This forces a sesquilinear form: an
+
+inner product.
+
+
+
+\subsection{Why Complex Numbers?}
+
+By Solèr’s theorem, the only infinite-dimensional orthomodular spaces over a division algebra are
+
+over R, C, or H. Physical continuity requirements (continuous one-parameter families of reversible
+
+transformations in 2D subspaces) select C. The phase e^{i$\theta$} parameterizes the unique continuous
+
+family of admissibility-preserving rotations in a 2D coherent subspace.
+
+
+
+\subsection{Hilbert Space}
+
+Completing the inner product space yields a Hilbert space H. This is the mathematical home of
+
+quantum states: the space of coherent bookkeeping under finite enforceability.
+
+
+
+\section{Composition and Tensor Products}
+
+
+
+\subsection{Joint Enforceability}
+
+Papers 1--2 established that composition can fail (non-closure). But when composition
+
+succeeds---when two systems are jointly enforceable---what structure does the composite have?
+
+
+
+\subsection{Bilinear Composition}
+
+Let A and B be systems with Hilbert spaces H_A and H_B. If they are jointly enforceable, their
+
+composite must have a Hilbert space H_AB. Refinement composability requires that refining A
+
+then composing with B gives the same result as composing then refining. This forces bilinear
+
+composition: $\otimes$: H_A $\times$ H_B $\to$ H_AB.
+
+
+
+\subsection{Tensor Product}
+
+\textbf{Theorem. The minimal composite space satisfying bilinear composition and closure under}
+
+admissible recombination is the tensor product H_A $\otimes$ H_B.
+
+
+
+\subsection{Entanglement}
+
+Most states in H_A $\otimes$ H_B are not product states. These are entangled states: joint realizations
+
+that cannot be factored into independent realizations. Entanglement is not mysterious in this
+
+framework. It is the generic representation of joint enforceability when the interaction functional is
+
+nonzero. Entangled states encode correlations that require coordination across interfaces.
+
+
+
+\subsection{Conditional Composition (Paper 2 Link)}
+
+The tensor product exists if and only if the composite is admissible: A $\otimes$ B exists ⇔ E_$\Gamma$(A $\\cup$ B) $\leq$
+
+C_$\Gamma$. This is non-closure at the level of quantum representations: the familiar assumption that
+
+composition always works is valid only within the admissible region. At saturation (horizons,
+
+measurement), the tensor product description itself breaks down.
+
+
+
+\section{The Born Rule}
+
+
+
+\subsection{Refinement Invariance}
+
+Probability assignments must be refinement-invariant: coarse-graining and fine-graining must be
+
+\[consistent. If outcome E can be refined into E_1 $\\cup$ E_2, then p(E) = p(E_1) + p(E_2). This is\]
+
+additivity over disjoint outcomes.
+
+
+
+\subsection{Admissibility Invariance}
+
+Probability assignments must be admissibility-invariant: they must not depend on arbitrary
+
+bookkeeping choices. For a state $\rho$ and effect E, p(E|$\rho$) must be invariant under basis changes,
+
+equivalent representations, and admissible reversible transformations.
+
+
+
+\subsection{Gleason’s Theorem}
+
+\textbf{Theorem (Gleason). In a Hilbert space of dimension $\geq$ 3, the unique probability measure}
+
+\[satisfying additivity and admissibility-invariance is: p(E|$\rho$) = Tr($\rho$E). For pure states $\rho$ =\]
+
+
+
+\[|$\\psi$$\\psi$| and projections E = |$\phi$$\phi$|: p = |$\\psi$|$\phi$|². This is the Born rule. [Import: Gleason\]
+
+1957]
+
+
+
+\subsection{The Born Rule Is Forced}
+
+The Born rule is not a postulate. It is the unique admissibility-invariant probability assignment in
+
+quantum-admissible regimes. The “mystery” of why probability is |$\\psi$|² dissolves: it is the only
+
+assignment compatible with the structure forced by admissibility.
+
+
+
+\section{Dynamics}
+
+
+
+\subsection{Reversible Evolution: Unitarity}
+
+\textbf{Theorem. Admissibility-preserving reversible transformations are unitary (or antiunitary).}
+
+\[Preservation of the inner product means Uv, Uw = v, w for all v, w. Physical continuity\]
+
+excludes antiunitary except for time-reversal. Continuous reversible evolution is therefore
+
+\[generated by self-adjoint operators: U(t) = e^{-iHt}. This is the Schrödinger equation\]
+
+structure.
+
+
+
+\subsection{General Evolution: CPTP Maps}
+
+Not all evolution is reversible. Record formation, interaction with environments, and capacity
+
+commitment produce irreversible changes. Admissibility-preserving transformations that remain
+
+admissibility-preserving under extension by ancillas are completely positive. With normalization
+
+(trace preservation), admissibility-preserving evolution is described by CPTP maps.
+
+
+
+\section{Measurement as Regime Transition}
+
+
+
+\subsection{The Standard Problem}
+
+Measurement is the central conceptual difficulty of quantum mechanics. The standard formalism
+
+requires a “collapse postulate” that violates unitarity and lacks a dynamical mechanism. Within the
+
+admissibility framework, measurement requires no postulate. It is a regime transition from
+
+quantum description to record-locked description.
+
+
+
+\subsection{Before and After Measurement}
+
+Before measurement: multiple outcomes are jointly admissible, quantum description applies,
+
+superposition is meaningful. After measurement: records correlate with one outcome, capacity is
+
+committed, alternatives contradicting the record are inadmissible. The transition is not mysterious.
+
+It is the same capacity-locking process described in Paper 3 (LEDGERS), now applied to
+
+quantum-coherent distinctions.
+
+
+
+\subsection{Record-Locking Channel Formalization (T9)}
+
+The February 2026 release provides an explicit algebraic model for measurement via
+
+\[record-locking channels. The interface algebra decomposes as M = M_sys $\otimes$ Z_R, where M_sys\]
+
+is the system algebra and Z_R is a classical log algebra with projections {p_s} indexed by log
+
+strings.
+
+
+
+\[Construction. Each enforcement operation E_i acts as: E_i = (E_i^{sys} $\otimes$ id)  (id $\otimes$ $\alpha$_i),\]
+
+\[where $\alpha$_i is an irreversible append map: $\alpha$_i(p_s) = p_{(s,i)}. The append extends the\]
+
+classical log by one symbol, recording which enforcement was applied.
+
+
+
+\textbf{Theorem T9 (L3-$\mu$) [P]. For k enforcement operations applied in all k! orderings, the resulting}
+
+CP maps are pairwise distinct: for $\pi$ $\neq$ $\sigma$, E_$\pi$ $\neq$ E_$\sigma$. The log projections p_$\pi$ and p_$\sigma$ are
+
+orthogonal. Therefore |H_k / $\\equiv$| = k! inequivalent histories.
+
+
+
+This resolves the measurement problem in the following sense: measurement is not collapse but
+
+record-locking. The “collapse” is the transition from the coherent regime (where M_sys is the
+
+relevant algebra) to the record-locked regime (where Z_R projections determine which outcome
+
+has been logged). The log is irreversible because record-lock capacity constraints prevent undoing
+
+the append (T0.4′ certificate, Paper 2).
+
+
+
+\subsection{Decoherence as Capacity Commitment}
+
+Decoherence is the progressive commitment of capacity to environmental records. As the
+
+environment logs interaction results, the log algebra Z_R grows and the coherent sector M_sys
+
+effectively shrinks. When enough capacity is committed to environmental records, the quantum
+
+description ceases to be applicable---not because quantum mechanics is wrong, but because its
+
+regime conditions (reversible refinement) no longer hold.
+
+
+
+\section{Connection to Matter Content}
+
+
+
+\subsection{Quantum Structure Constrains Particle Content}
+
+The quantum representation derived in this paper does not float freely above the constraint
+
+structure. It is jointly constrained with the gauge and matter content derived in Papers 1 and 4:
+
+
+
+Quantum Structure               Capacity Constraint                 Consequence
+
+
+
+Tensor product H_A $\otimes$ H_B Conditional on admissibility               Composition fails at horizons
+
+
+
+Unitary symmetry group          Gauge selection (T_gauge)           SU(3)$\times$SU(2)$\times$U(1) uniquely selected
+
+
+
+Matter representations          Anomaly cancellation (T5)           Chiral fermion content forced
+
+
+
+\[Generation structure            Capacity saturation (T4F)           N_gen = 3 exactly\]
+
+
+
+\[Born rule probabilities         Gleason + admissibility             p = |$\\psi$|$\phi$|² uniquely\]
+
+
+
+The quantum representation is not free to have arbitrary matter content. The same capacity
+
+architecture that forces Hilbert space also forces three generations of chiral fermions in the
+
+Standard Model gauge group. This is a qualitatively new feature: previous derivations of quantum
+
+structure (Hardy, Chiribella et al., etc.) do not constrain particle content.
+
+
+
+\subsection{Particles Require Quantum Structure}
+
+The enforcement potential V($\Phi$) derived in Paper 3 (Section 5.3) shows that particle-like excitations
+
+require the quantum structure derived here. The binding well at $\Phi$/C $\approx$ 0.81 has mass gap d²V/d$\Phi$²
+
+> 0, but no classical soliton localizes: particles are quantum modes of the enforcement field, not
+
+classical cost minima. This closes the conceptual gap between the constraint architecture and
+
+observable particle physics.
+
+
+
+\section{Summary}
+
+
+
+\subsection{What Is Derived}
+
+
+
+Structure                    Source                                     Status
+
+
+
+Linear space                 Interference closure                       [P] (from bilinearity regime)
+
+
+
+Inner product                Admissibility-invariant overlap            [P] (from regime)
+
+
+
+Complex numbers              Phase admissibility + Solèr                [P] + [I]
+
+
+
+Hilbert space                Completion of above                        [P]
+
+
+
+Tensor products              Compositional closure                      [P] (conditional on admissibility)
+
+
+
+Born rule                    Gleason’s theorem                          [P] + [I: Gleason 1957]
+
+
+
+Unitarity                    Admissibility-preserving reversible maps [P]
+
+
+
+CPTP maps                    Admissibility-preserving general maps      [P]
+
+
+
+k! history sectors           Record-locking append maps (T9)            [P]
+
+
+
+Measurement                  Regime transition to record-lock           [P_structural]
+
+
+
+\subsection{What Is NOT Derived}
+
+Specific Hamiltonians (dynamics depends on physical content). Coupling constants (regime
+
+parameters, but see Paper 4 Section 7 for sin²$\theta$_W). Particle masses beyond the structural hierarchy
+
+(Yukawa ratios are regime parameters).
+
+
+
+\subsection{The Status of Quantum Mechanics}
+
+Quantum mechanics is: necessary in bilinear, unsaturated regimes; exact within its domain of
+
+validity; conditional on regime assumptions; limited at saturation, measurement, and horizons. It is
+
+not fundamental in the sense of being the bottom layer. It is a representation---the unique
+
+representation compatible with coherent admissibility bookkeeping in appropriate regimes.
+
+
+
+Appendix A: Regime Assumptions
+
+Assumption                Content                                       Where It Fails
+
+
+
+Interference closure      Admissible distinctions can be refined/recombined/reversed
+
+Record-locked histories; horizons
+
+
+
+Overlap invariance        Similarity measure invariant under admissible
+
+Nearreversible
+
+saturationtransforms
+
+boundaries
+
+
+
+Phase admissibility       Continuous 1-parameter reversible families
+
+Discrete
+
+exist inregimes;
+
+2D subspaces
+
+quantized interfaces
+
+
+
+Compositional closure Refinement and composition commute forAt
+
+jointly
+
+capacity
+
+enforceable
+
+saturation;
+
+systems
+
+horizon crossing
+
+
+
+Bilinearity               Interaction functional I_$\Gamma$ is approximatelyStrong-coupling;
+
+bilinear         near-saturation
+
+
+
+Where these regime assumptions fail, quantum mechanics ceases to apply---but the underlying
+
+admissibility constraints (Papers 1--4) continue to hold. The constraint structure is more
+
+fundamental than the quantum representation.
+
+
+
+Appendix B: Record-Locking Channel Details
+
+The T9/L3-$\mu$ proof constructs the record-locking model explicitly:
+
+
+
+\[(1) Interface algebra: M = M_sys $\otimes$ Z_{$\leq$k}, where Z_{$\leq$k} is the classical log algebra with\]
+
+projections {p_s} for s $\\in$ Σ^m (m $\leq$ k), Σ = {1, ..., k}.
+
+
+
+\[(2) Append maps: $\alpha$_i(p_s) = p_{(s,i)} for |s| < k; $\alpha$_i(p_s) = p_s for |s| = k (saturation). Key\]
+
+property: $\alpha$_i(p_s) · $\alpha$_j(p_s) = 0 for i $\neq$ j (ranges disjoint).
+
+
+
+\[(3) Enforcement channels: E_i = (E_i^{sys} $\otimes$ id)  (id $\otimes$ $\alpha$_i). Applying E_i refines the\]
+
+system and appends ‘i’ to the irreversible log.
+
+
+
+\[(4) For permutation $\pi$: E_{$\pi$(1)}  ...  E_{$\pi$(k)} maps X = 1_sys $\otimes$ p_∅ to 1_sys $\otimes$\]
+
+p_{($\pi$(1),...,$\pi$(k))} = 1_sys $\otimes$ p_$\pi$.
+
+
+
+(5) For $\pi$ $\neq$ $\sigma$: p_$\pi$ $\neq$ p_$\sigma$ and p_$\pi$ · p_$\sigma$ = 0. Therefore |H_k/$\\equiv$| = k!.
+
+
+
+\textbf{Corollary: dim(Z_R) $\geq$ k! and $\Delta$S_records $\geq$ log(k!) $\sim$ k log k. The entropy of measurement is}
+
+structural, not thermodynamic.
+
+
+
+Appendix C: Changelog from January 2026 Release
+
+Change                              Section      Details
+
+
+
+Record-locking channels             7.3          T9/L3-$\mu$: explicit algebraic model for measurement
+
+
+
+k! history sectors                  7.3          Factorial counting from append maps (proved, not assumed)
+
+
+
+Decoherence section                 7.4          Decoherence as progressive capacity commitment to Z_R
+
+
+
+Matter content connection           8            New section: quantum structure jointly constrains particle content
+
+
+
+Particles require QM                8.2          V($\Phi$) mass gap + no classical solitons $\to$ quantum modes
+
+
+
+Derived table expanded              9.1          Added k! histories and measurement with epistemic tags
+
+
+
+Change                              Section       Details
+
+
+
+Regime table added                  App. A        Explicit table of regime assumptions with failure modes
+
+
+
+Forward references                  9             Added Paper 7 (ACTION) and Paper 4 Section 7 (sin²$\theta$_W)
+
+
+
+Date updated                        Header        1/30/2026 $\to$ 2/8/2026
+
+
+
+
+\end{document}

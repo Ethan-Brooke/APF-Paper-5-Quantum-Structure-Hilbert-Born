@@ -1,0 +1,618 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage[colorlinks=true,linkcolor=black,citecolor=black,urlcolor=black]{hyperref}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usepackage{setspace}
+\setstretch{1.05}
+\setlength{\parskip}{0.65em}
+\setlength{\parindent}{0pt}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\newcommand{\coderef}[2]{\texttt{#1}\,(\texttt{#2})}
+
+\newtcolorbox{apfbox}{
+  breakable, enhanced,
+  colback=black!3, colframe=black!30,
+  boxrule=0.6pt, arc=2pt,
+  left=8pt, right=8pt, top=8pt, bottom=8pt
+}
+
+\newtcolorbox{wayfinder}{
+  breakable, enhanced,
+  colback=blue!3, colframe=blue!40,
+  boxrule=0.7pt, arc=2pt,
+  left=8pt, right=8pt, top=8pt, bottom=8pt,
+  title={\textbf{Wayfinder}},
+  fonttitle=\bfseries,
+  coltitle=blue!50!black, colbacktitle=blue!10
+}
+
+\newtcolorbox{bridgebox}{
+  breakable, enhanced,
+  colback=orange!3, colframe=orange!50,
+  boxrule=0.7pt, arc=2pt,
+  left=8pt, right=8pt, top=8pt, bottom=8pt,
+  title={\textbf{Bridge}},
+  fonttitle=\bfseries,
+  coltitle=orange!60!black, colbacktitle=orange!10
+}
+
+\title{Paper 5 --- REPRESENTATIONS (Quantum):\\
+Quantum Structure as Least-Cost Admissible Bookkeeping\\[2pt]
+\large Hilbert Space, the Born Rule, and Measurement under Finite Enforceability}
+\author{E. Brooke}
+\date{April 2026 (v2.0-PLEC)}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This paper derives the mathematical structure of quantum mechanics --- Hilbert space,
+the Born rule, tensor products, unitarity, and CPTP dynamics --- as the realized
+least-cost admissible bookkeeping for coherent jointly enforceable distinctions under
+finite capacity. Quantum mechanics is not postulated; it is selected by the
+admissibility framework of Papers~1--4 in regimes where coherent reversible refinement
+holds. The derivation proceeds without assuming probability, dynamics, or any quantum
+postulates. The v2.0-PLEC release reframes the entire derivation around the Principle
+of Least Enforcement Cost (PLEC): admissibility fixes the licensable class of
+bookkeeping schemes; PLEC selects the realized minimal scheme; measurement is a
+change of admissible class rather than a collapse axiom. Imported closure theorems
+(Sol\`er, Gleason) are tagged as imports closing an APF-prepared admissible class,
+not as APF-internal derivations.
+\end{abstract}
+
+\begin{wayfinder}
+\textbf{Operational primitives used in this paper.}
+\begin{itemize}[leftmargin=1.5em,nosep]
+    \item \textbf{Admissible class $\mathcal{A}_{\Gamma}$:} the bookkeeping schemes
+    physically licensable in context $\Gamma$ under A1.
+    \item \textbf{Enforcement-cost functional $E_{\Gamma}$:} total capacity burden
+    required to maintain a configuration $X \in \mathcal{A}_{\Gamma}$.
+    \item \textbf{PLEC selection $X^{\ast}$:} realized structure, $X^{\ast} \in
+    \arg\min_{X \in \mathcal{A}_{\Gamma}} E_{\Gamma}(X)$.
+    \item \textbf{Coherent regime:} reversible refinement, recombination, undo all
+    preserve admissibility.
+    \item \textbf{Record-locked regime:} capacity irreversibly committed to a logged
+    alternative; algebra extends to $M_{\mathrm{sys}} \otimes Z_R$.
+\end{itemize}
+This paper writes the quantum formalism as the realized PLEC selector on the coherent
+admissible class, and writes measurement as the regime exit from coherent to
+record-locked admissible bookkeeping.
+\end{wayfinder}
+
+\section*{Shared Canonical Frame (Papers 5--6)}
+
+\begin{apfbox}
+\textbf{Meaning, Admissibility, Realization, Regime Exit.}
+\begin{enumerate}[leftmargin=1.6em]
+    \item \textbf{Meaning.} A distinction is physically meaningful iff it is robustly
+    enforceable under admissible perturbations.
+    \item \textbf{Admissibility.} A configuration, path, or representation is
+    admissible iff its total enforcement demand does not exceed available capacity.
+    \item \textbf{Realization.} When the admissible class is nonempty and the
+    enforcement-cost functional is well-defined on it, realized physical structure
+    is selected as the least-enforcement-cost member of that admissible class.
+    \item \textbf{Regime exit.} When the conditions required for comparison by
+    smooth finite cost fail, the representation exits its domain, while the deeper
+    admissibility constraints remain in force.
+\end{enumerate}
+\end{apfbox}
+
+\section{Introduction}
+
+\subsection{The Question}
+Why does quantum mechanics have the mathematical structure it does? Standard
+presentations take Hilbert spaces, complex amplitudes, the Born rule, tensor
+products, and unitary evolution as axioms or postulates --- accepted because they
+work. But the formalism permits vastly more structure than nature realizes. Why the
+specific subset that is physically realized?
+
+\subsection{The Answer}
+Quantum structure is not arbitrary. It is the least-cost admissible bookkeeping
+required to track coherent jointly enforceable distinctions under finite
+enforceability. The admissibility framework of Papers~1--4 determines which
+bookkeeping structures are physically licensable in coherent regimes; quantum
+mechanics is the realized minimal structure within that admissible class. In this
+paper we show that, in bilinear unsaturated regimes, least-cost admissible
+bookkeeping has the familiar form: linear structure from interference closure,
+inner products from admissibility-invariant overlap, complex structure from
+continuous reversible symmetry, tensor products from compositional closure, the
+Born rule from admissibility-invariant probability assignment, and unitary/CPTP
+evolution from admissibility-preserving reversible/general transformations. No
+quantum postulates are assumed. The formalism is selected by admissibility.
+
+\subsection{What This Paper Assumes}
+This paper assumes Papers~1 (SPINE), 2 (STRUCTURE), 3 (LEDGERS), 4 (CONSTRAINTS).
+It also assumes a bilinear unsaturated regime: the interaction functional
+$I_{\Gamma}$ is approximately bilinear and no admissibility saturation is
+encountered. This is a regime condition, not a universal truth.
+
+\subsection{What This Paper Does NOT Assume}
+Hilbert space (derived), complex numbers (derived), Born rule (derived), unitarity
+(derived), measurement postulates (regime transitions, not postulates). No quantum
+axioms are assumed.
+
+\subsection{Reading Guide}
+Section~\ref{sec:plec} introduces the canonical PLEC schema. Sections~\ref{sec:linear}--\ref{sec:dynamics}
+walk through the realized least-cost bookkeeping structure step by step.
+Section~\ref{sec:measurement} treats measurement as regime exit. Section~\ref{sec:matter}
+links the bookkeeping derivation to the matter-content results of Paper~4.
+Section~\ref{sec:summary} closes with an explicit epistemic-tag table separating
+internally derived results [P], imported closures [P]+[I], and structural
+identifications [P\_structural].
+
+\section{Canonical PLEC Schema}\label{sec:plec}
+
+\begin{definition}[Admissible bookkeeping class]
+Let $\Gamma$ denote a physical context, interface, or regime. Let $\mathcal{A}_{\Gamma}$
+denote the class of all bookkeeping schemes $X$ that satisfy the APF admissibility
+conditions in that context.
+\end{definition}
+
+\begin{definition}[Enforcement-cost functional]
+Let $E_{\Gamma} : \mathcal{A}_{\Gamma} \to [0,\infty)$ assign the total capacity
+burden required to maintain $X$ in context $\Gamma$. The minimal value
+$\inf_{X \in \mathcal{A}_{\Gamma}} E_{\Gamma}(X)$ defines the realized cost in
+$\Gamma$.
+\end{definition}
+
+\begin{definition}[PLEC selection]
+A realized bookkeeping structure $X^{\ast}$ in context $\Gamma$ is selected by
+\[
+X^{\ast} \in \operatorname*{arg\,min}_{X \in \mathcal{A}_{\Gamma}} E_{\Gamma}(X).
+\]
+When the minimizer is unique up to the relevant equivalence relation $\sim$ (basis,
+gauge, descriptive coding redundancy), the realized structure is unique up to
+$\sim$.
+\end{definition}
+
+\begin{remark}
+The PLEC schema separates what is \emph{physically licensable} from what is
+\emph{physically realized}. The first is fixed by admissibility; the second is
+fixed only when the admissible class supports a meaningful least-cost comparison.
+The remainder of this paper instantiates the schema for coherent unsaturated
+regimes and shows that the realized bookkeeping is quantum mechanics.
+\end{remark}
+
+\section{Coherence Defines the Admissible Bookkeeping Class}\label{sec:linear}
+
+\subsection{Coherent Distinctions}
+A set of distinctions is \emph{coherent} when it can be reversibly refined,
+recombined, and undone without violating admissibility. Coherence does more than
+describe a convenient regime: it defines the class of bookkeeping structures that
+are physically licensable in unsaturated reversible settings. A bookkeeping scheme
+that fails coherence is not merely inconvenient; it does not correctly represent
+the admissible refinement structure of the underlying distinctions.
+
+\subsection{Interference Closure}
+Interference closure is the central consistency condition on the coherent
+admissible class. If two refinement paths lead to the same physical situation,
+bookkeeping must identify them consistently. Coherent bookkeeping is therefore
+required to close under admissible recombination. Concretely: a distinction $d$
+that can be refined two ways --- $d \to \{d_1, d_2\}$ and $d \to \{d_1', d_2'\}$
+--- must yield bookkeeping that is closed under reversible recombination of the
+two refinements.
+
+\subsection{Linearity}
+\begin{theorem}[Interference closure forces linear structure]
+Within the coherent admissible class, interference closure forces the space of
+realized bookkeeping states to form a vector space over a division algebra.
+\end{theorem}
+This is the first PLEC selection. Quantum linearity is not postulated in advance;
+it is the minimal closure property of admissible coherent bookkeeping. Among all
+licensable closure patterns, only the linear closure satisfies coherent
+recombination at minimum redundancy.
+
+\section{Invariant Overlap and the Selection of Complex Hilbert Structure}\label{sec:hilbert}
+
+\subsection{Admissibility-Invariant Overlap}
+Once coherent bookkeeping is restricted to the admissible class, further structure
+is fixed by invariance requirements. A similarity measure between coherent
+realizations must remain invariant under admissible reversible transformations and
+distribute appropriately over refinements. This forces a sesquilinear form: an
+inner product. Completing that structure yields a Hilbert space.
+
+\subsection{Why Complex Numbers?}
+Admissibility alone does not license every imaginable Hilbert-like representation.
+The admissible class is further restricted by continuity of reversible symmetry.
+By Sol\`er's theorem, infinite-dimensional orthomodular spaces over a division
+algebra reduce to $\mathbb{R}, \mathbb{C}, \mathbb{H}$. Physical continuity of
+one-parameter reversible families in two-dimensional coherent subspaces selects
+$\mathbb{C}$. The phase $e^{i\theta}$ parameterizes the unique continuous family
+of admissibility-preserving rotations in a 2D coherent subspace. Sol\`er is cited
+as an external import; there is no standalone APF check for it, but the
+APF-internal preparation of the orthomodular class is the ST-chain in
+\coderef{check\_L\_ST\_algebra}{core.py} and its successors (\texttt{check\_L\_ST\_Hilbert},
+\texttt{check\_L\_ST\_Dirac}).
+
+\begin{bridgebox}
+The role of Sol\`er here is precisely a closure theorem on an APF-prepared
+admissible class. APF supplies the orthomodular structure, the division-algebra
+structure, and the continuity requirement on one-parameter reversible families;
+Sol\`er then closes the classification to $\mathbb{R}, \mathbb{C}, \mathbb{H}$;
+continuous symmetry selects $\mathbb{C}$. Tag: [P] + [I: Sol\`er].
+\end{bridgebox}
+
+\subsection{Hilbert Space}
+Completing the inner-product space yields a Hilbert space $\mathcal{H}$. This is
+the realized least-cost admissible representation of coherent distinction
+structure in regimes where reversible refinement and continuous symmetry both
+hold. The complex Hilbert space is therefore not an arbitrary mathematical
+preference; it is the minimum-redundancy bookkeeping consistent with admissible
+coherent refinement.
+
+\section{Composition and the Realized Composite Structure}\label{sec:tensor}
+
+\subsection{Joint Enforceability is Conditional}
+Papers~1--2 establish that composition can fail: not every pair of systems is
+jointly enforceable. This means the admissible class of composite bookkeeping
+structures is already conditional. When two systems are jointly enforceable,
+bookkeeping must represent that success of composition without violating
+refinement consistency.
+
+\subsection{Bilinear Composition Forces the Tensor Product}
+Let $A$ and $B$ be coherent systems with Hilbert spaces $\mathcal{H}_A$ and
+$\mathcal{H}_B$. If they are jointly enforceable, refinement composability
+requires that refining $A$ then composing with $B$ gives the same result as
+composing then refining. Bilinearity follows. The minimal admissible composite
+bookkeeping satisfying bilinear composition and closure under admissible
+recombination is the tensor product $\mathcal{H}_A \otimes \mathcal{H}_B$.
+
+\subsection{Tensor Products are Realized, Not Universal}
+Tensor products are not universally primitive. They are the realized least-cost
+bookkeeping for composition \emph{within the admissible region}. Outside that
+region --- at saturation, measurement, or horizons --- the tensor-product
+representation itself ceases to apply. Quantum composition is therefore
+conditional at the same level as physical joint enforceability.
+
+\subsection{Entanglement}
+Most states in $\mathcal{H}_A \otimes \mathcal{H}_B$ are not product states. These
+are entangled states: joint realizations that cannot be factored into independent
+realizations. Entanglement is not a mystery in this framework. It is the generic
+representation of joint enforceability when the interaction functional is nonzero;
+entangled states encode correlations that require coordinated bookkeeping across
+interfaces.
+
+\subsection{Conditional Composition (Paper 2 Link)}
+The tensor product exists \emph{if and only if} the composite is admissible:
+$A \otimes B \text{ exists} \iff E_{\Gamma}(A \cup B) \le C_{\Gamma}$. This is
+non-closure at the level of quantum representations: the familiar assumption that
+composition always works is valid only within the admissible region. At saturation
+boundaries, the tensor-product description itself breaks down and the regime
+exits.
+
+\section{The Born Rule as the Unique Admissible Probability Assignment}\label{sec:born}
+
+\subsection{Refinement Invariance}
+Probability assignments must be refinement-invariant: coarse-graining and
+fine-graining must agree. If outcome $E$ can be refined into $E_1 \cup E_2$ with
+$E_1 \cap E_2 = \emptyset$, then $p(E) = p(E_1) + p(E_2)$. This is additivity over
+disjoint outcomes.
+
+\subsection{Admissibility Invariance}
+Probability assignments must be admissibility-invariant: they must not depend on
+arbitrary bookkeeping choices. For a state $\rho$ and effect $E$, $p(E\mid\rho)$
+must be invariant under basis changes, equivalent representations, and admissible
+reversible transformations.
+
+\subsection{Gleason's Theorem}
+\begin{theorem}[Gleason 1957, as a closure on the admissible class]
+In a complex Hilbert space of dimension $\geq 3$, the unique probability measure
+satisfying refinement additivity and admissibility-invariance is
+\[
+p(E\mid\rho) = \mathrm{Tr}(\rho E).
+\]
+For pure states $\rho = \lvert\psi\rangle\langle\psi\rvert$ and projections
+$E = \lvert\phi\rangle\langle\phi\rvert$, this gives $p = \lvert\langle\psi\mid\phi\rangle\rvert^2$.
+\end{theorem}
+APF-internal verification of the finite-dimensional case is in
+\coderef{check\_L\_Gleason\_finite}{supplements.py}; the full Gleason statement
+remains an external import.
+
+\begin{bridgebox}
+The important point is not merely that Gleason's theorem applies, but \emph{why}
+it applies here. APF does not conjure probability from nowhere; it identifies the
+admissible class of bookkeeping structures and the invariance conditions any
+physically meaningful assignment must satisfy. The Born rule is then the unique
+probability assignment compatible with that realized bookkeeping. Tag: [P] + [I:
+Gleason 1957].
+\end{bridgebox}
+
+\subsection{The Born Rule Is Selected, Not Postulated}
+The Born rule is not a postulate. It is the unique admissibility-invariant
+probability assignment in the coherent admissible class once Hilbert structure is
+selected. The ``mystery'' of why probability is $\lvert\psi\rvert^2$ dissolves: it
+is the only assignment compatible with the bookkeeping forced by admissibility.
+
+\section{Dynamics as Admissibility-Preserving Evolution}\label{sec:dynamics}
+
+\subsection{Reversible Evolution: Unitarity}
+\begin{theorem}[Admissibility-preserving reversible evolution is unitary]
+Within the realized coherent bookkeeping structure, reversible evolution must
+preserve admissibility. Preservation of the inner product forces unitary or
+antiunitary transformations; physical continuity excludes antiunitary maps except
+for discrete cases such as time reversal. Continuous reversible evolution is
+therefore generated by self-adjoint operators: $U(t) = e^{-iHt}$. This is the
+Schr\"odinger structure.
+\end{theorem}
+
+\subsection{General Evolution: CPTP Maps}
+Not all evolution is reversible. Record formation, environmental interaction, and
+capacity commitment produce irreversible changes. Admissibility-preserving
+transformations that remain admissibility-preserving under extension by ancillas
+are completely positive. With normalization (trace preservation),
+admissibility-preserving evolution is described by CPTP maps.
+
+\subsection{Dynamics is Not a Separate Postulate}
+The familiar dynamical structure of quantum mechanics is not a separate postulate
+layered on top of Hilbert space. It is the admissibility-preserving evolution law
+of the realized coherent bookkeeping selected in the preceding sections.
+
+\section{Measurement as Exit from the Coherent Bookkeeping Regime}\label{sec:measurement}
+
+\subsection{The Measurement Problem Re-Read}
+Measurement is the central conceptual difficulty of standard quantum mechanics
+because the formalism appears to require an extra collapse postulate that
+interrupts otherwise unitary evolution. In the admissibility framework, the issue
+is reformulated more cleanly. The question is not how a unitary system suddenly
+violates its own law, but \emph{when the coherent bookkeeping regime ceases to be
+the correct admissible representation}. Measurement is therefore a
+regime-transition problem, not an axiom problem.
+
+\subsection{Before and After Measurement as Class Change}
+Before measurement, multiple outcomes are jointly admissible and the relevant
+bookkeeping class is the coherent class: reversible refinement, recombination, and
+admissibility-invariant overlap are all meaningful. After measurement, capacity
+has been irreversibly committed to a recorded alternative. The relevant
+bookkeeping class is no longer the coherent one; it is the record-locked class in
+which mutually incompatible alternatives are excluded by the structure of the
+irreversible log.
+
+The key point is that this is a \emph{change of admissible class}. Quantum
+superposition does not ``mysteriously disappear.'' Rather, the system exits the
+coherent least-cost bookkeeping regime and enters a record-locked regime whose
+admissible structure is different.
+
+\subsection{Record-Locking Channels as Explicit Algebraic Class Change (T9 / L3-$\mu$)}
+The record-locking channel formalization makes this change explicit. The
+interface algebra decomposes as
+\[
+M = M_{\mathrm{sys}} \otimes Z_R,
+\]
+where $M_{\mathrm{sys}}$ is the coherent system algebra and $Z_R$ is a classical
+log algebra with projections $\{p_s\}$ indexed by log strings. Each enforcement
+operation $\mathcal{E}_i$ acts both on the system and through an irreversible
+append map $\alpha_i: p_s \mapsto p_{(s,i)}$ on the log:
+\[
+\mathcal{E}_i = (\mathcal{E}_i^{\mathrm{sys}} \otimes \mathrm{id}) \circ
+(\mathrm{id} \otimes \alpha_i).
+\]
+
+\begin{theorem}[T9 / L3-$\mu$, $k!$ inequivalent histories]
+For $k$ enforcement operations applied in all $k!$ orderings, the resulting CP
+maps are pairwise distinct: for $\pi \neq \sigma$, $\mathcal{E}_{\pi} \neq
+\mathcal{E}_{\sigma}$. The log projections $p_{\pi}$ and $p_{\sigma}$ are
+orthogonal. Therefore $\lvert H_k / \equiv\rvert = k!$ inequivalent histories.
+\end{theorem}
+Formal verification: \coderef{check\_T9}{gauge.py}.
+
+This construction does more than reinterpret measurement. It exhibits the new
+admissible class algebraically. What is traditionally called collapse is the
+point at which the physically relevant admissible description is no longer
+supported on $M_{\mathrm{sys}}$ alone, but on $M_{\mathrm{sys}} \otimes Z_R$ with
+irreversible sector separation. The log is irreversible because record-lock
+capacity constraints prevent undoing the append (T0.4$'$ certificate, Paper~2).
+
+\subsection{Decoherence as Progressive Class Transfer}
+Decoherence is the progressive transfer from coherent admissible bookkeeping to
+record-locked admissible bookkeeping. As environmental records accumulate, the log
+algebra $Z_R$ grows and the coherent sector becomes a less accurate effective
+compression of the admissible structure. When enough capacity has been committed
+to records, the quantum description ceases to apply --- not because it is false,
+but because the system is no longer in the regime whose admissible class quantum
+mechanics represents.
+
+\begin{bridgebox}
+Measurement is to Paper~5 what saturation, branching, and horizons are to
+Paper~6: not a violation of deeper law, but a boundary of representational
+validity. The unifying project-level statement is: record locking, saturation,
+horizons, and topology change are all regime exits of representation, not
+failures of admissibility itself.
+\end{bridgebox}
+
+\section{Connection to Matter Content}\label{sec:matter}
+
+\subsection{Quantum Structure Constrains Particle Content}
+The quantum representation derived in this paper does not float freely above the
+constraint structure. It is jointly constrained with the gauge and matter content
+derived in Papers~1 and 4 by the same capacity architecture:
+
+\begin{center}
+\begin{tabular}{@{}llll@{}}
+\toprule
+Quantum structure & Capacity constraint & Consequence & Coderef \\
+\midrule
+$\mathcal{H}_A \otimes \mathcal{H}_B$ & Conditional on admissibility & Composition fails at horizons & --- \\
+Unitary symmetry group & Gauge selection & $SU(3)\!\times\!SU(2)\!\times\!U(1)$ & \coderef{check\_T\_gauge}{gauge.py} \\
+Matter representations & Anomaly cancellation & Chiral fermion content forced & \coderef{check\_T5}{gauge.py} \\
+Generation structure & Capacity saturation & $N_{\mathrm{gen}} = 3$ & \coderef{check\_T4F}{gauge.py} \\
+Born-rule probabilities & Gleason + admissibility & $p = \lvert\langle\psi\mid\phi\rangle\rvert^2$ & \coderef{check\_L\_Gleason\_finite}{supplements.py} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The quantum representation is not free to have arbitrary matter content. The same
+capacity architecture that forces Hilbert space also forces three generations of
+chiral fermions in the Standard Model gauge group. This is qualitatively new:
+prior derivations of quantum structure (Hardy, Chiribella et al.) do not constrain
+particle content.
+
+\subsection{Particles Require Quantum Structure}
+The enforcement potential $V(\Phi)$ derived in Paper~3 (Section~5.3) shows that
+particle-like excitations require the quantum structure derived here. The binding
+well at $\Phi/C \approx 0.81$ has mass gap $d^2 V/d\Phi^2 > 0$, but no classical
+soliton localizes: particles are quantum modes of the enforcement field, not
+classical cost minima. This closes the conceptual gap between the constraint
+architecture and observable particle physics.
+
+\subsection{Bridge Tightening (Open)}
+The bridge from bookkeeping structure to gauge and matter content is presently a
+structural coexistence claim under common capacity architecture, not a direct
+single-theorem derivation. Tightening the bridge from compatibility to realized
+selection is one of the open theorem projects identified in the v2.0-PLEC
+revision program.
+
+\section{Epistemic Tagging Discipline (Paper 5)}\label{sec:tagging}
+
+\begin{apfbox}
+\textbf{Project-wide categories.}
+\begin{itemize}[leftmargin=1.5em,nosep]
+    \item \textbf{[P] Internally derived.} Result follows from APF axioms plus
+    explicitly stated regime assumptions, without external classification.
+    \item \textbf{[P]+[I] Derived with import.} APF fixes the admissible class; an
+    external mathematical theorem closes classification, uniqueness, or representation.
+    \item \textbf{[P\_structural] Structural identification.} The framework
+    identifies an already-derived structure with a familiar physical role; not a
+    stronger derivation than the identification supports.
+    \item \textbf{[Pred] Phenomenological proposal/prediction.} Empirical
+    identification or scaling whose status is downstream and must be evaluated
+    against data.
+\end{itemize}
+\end{apfbox}
+
+\begin{center}
+\begin{tabular}{@{}llll@{}}
+\toprule
+Item & Tag & Coderef & Reason \\
+\midrule
+Linear structure & [P] & --- & Interference closure on the coherent admissible class. \\
+Inner product & [P] & --- & Admissibility-invariant overlap. \\
+Complex field selection & [P]+[I] & \coderef{check\_L\_ST\_Hilbert}{core.py} & APF narrows; Sol\`er closes classification. \\
+Hilbert completion & [P] & \coderef{check\_L\_ST\_Hilbert}{core.py} & Completion of inner-product structure. \\
+Tensor product & [P] & --- & Minimal admissible composite under bilinearity. \\
+Born rule & [P]+[I] & \coderef{check\_L\_Gleason\_finite}{supplements.py} & APF fixes invariance; Gleason closes. \\
+Unitarity & [P] & --- & Inner-product preservation + continuity. \\
+CPTP maps & [P] & --- & Admissibility preservation under ancilla extension. \\
+Record-locking, $k!$ histories & [P] & \coderef{check\_T9}{gauge.py} & Explicit algebraic construction. \\
+Gauge coupling & [P] & \coderef{check\_T\_gauge}{gauge.py} & $SU(3)\!\times\!SU(2)\!\times\!U(1)$ selection. \\
+Generation count & [P] & \coderef{check\_T4F}{gauge.py} & $N_{\mathrm{gen}} = 3$ from saturation. \\
+Anomaly cancellation & [P] & \coderef{check\_T5}{gauge.py} & Chiral fermion content forced. \\
+Measurement as class change & [P\_structural] & \coderef{check\_Regime\_exit\_Type\_III}{plec.py}, \coderef{check\_T9}{gauge.py} & Regime transition (v6.9 formalization), not primitive axiom. \\
+Matter-content bridge & mixed & multiple & Structural coexistence; tightening open. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+This discipline makes the paper easier to defend: imported steps remain visible,
+while internally derived structure becomes sharper rather than weaker.
+
+\section{Summary}\label{sec:summary}
+
+\subsection{What Is Derived}
+The realized least-cost admissible bookkeeping for coherent jointly enforceable
+distinctions in bilinear unsaturated regimes:
+\begin{itemize}[leftmargin=1.5em,nosep]
+    \item Linear vector-space structure from interference closure.
+    \item Inner-product structure from admissibility-invariant overlap.
+    \item Complex Hilbert space via Sol\`er + continuous symmetry selection.
+    \item Tensor-product composition (conditional on joint admissibility).
+    \item The Born rule via Gleason on the prepared admissible class.
+    \item Unitary and CPTP evolution as admissibility preservation.
+    \item Record-locking and the $k!$ history sectors of T9 / L3-$\mu$.
+\end{itemize}
+
+\subsection{What Is NOT Derived}
+Specific Hamiltonians (depend on physical content). Coupling constants beyond
+the structural ratios (regime parameters). Particle masses beyond the structural
+hierarchy (Yukawa ratios are regime parameters). Particle identification of dark
+matter (Paper~6 fences this).
+
+\subsection{The Status of Quantum Mechanics}
+Quantum mechanics is the realized least-cost bookkeeping for coherent jointly
+enforceable distinctions in bilinear unsaturated regimes. It is exact within that
+regime, conditional on its regime assumptions, and non-fundamental in the sense
+that it is a representation rather than the ontological base layer. When the
+conditions of coherent reversible bookkeeping fail --- at saturation, record
+locking, measurement, or horizons --- the quantum representation exits its
+domain, while the deeper admissibility constraints remain in force.
+
+\appendix
+
+\section*{Appendix A: Regime Assumptions and Where They Fail}
+
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Assumption & Content & Where it fails \\
+\midrule
+Interference closure & Refine / recombine / undo preserve admissibility & Record-locked histories; horizons \\
+Overlap invariance & Similarity invariant under reversible transforms & Near saturation boundaries \\
+Phase admissibility & Continuous one-parameter reversible families exist in 2D subspaces & Discrete / quantized regimes \\
+Compositional closure & Refinement and composition commute for jointly enforceable systems & Saturation; horizon crossing \\
+Bilinearity & $I_{\Gamma}$ approximately bilinear & Strong-coupling; near-saturation \\
+\bottomrule
+\end{tabular}
+\end{center}
+Where these regime assumptions fail, quantum mechanics ceases to apply --- but the
+underlying admissibility constraints (Papers~1--4) continue to hold. The
+constraint structure is more fundamental than the quantum representation.
+
+\section*{Appendix B: Record-Locking Channel Details}
+
+The T9 / L3-$\mu$ proof constructs the record-locking model explicitly:
+
+\begin{enumerate}[leftmargin=1.6em]
+    \item \textbf{Interface algebra.} $M = M_{\mathrm{sys}} \otimes Z_{\le k}$,
+    where $Z_{\le k}$ is the classical log algebra with projections $\{p_s\}$ for
+    $s \in \Sigma^m$ ($m \le k$), $\Sigma = \{1,\ldots,k\}$.
+    \item \textbf{Append maps.} $\alpha_i(p_s) = p_{(s,i)}$ for $\lvert s\rvert <
+    k$; $\alpha_i(p_s) = p_s$ for $\lvert s\rvert = k$ (saturation). Key property:
+    $\alpha_i(p_s) \cdot \alpha_j(p_s) = 0$ for $i \neq j$ (ranges disjoint).
+    \item \textbf{Enforcement channels.} $\mathcal{E}_i = (\mathcal{E}_i^{\mathrm{sys}}
+    \otimes \mathrm{id}) \circ (\mathrm{id} \otimes \alpha_i)$. Applying
+    $\mathcal{E}_i$ refines the system and appends ``$i$'' to the irreversible log.
+    \item \textbf{Permutations.} For permutation $\pi$,
+    $\mathcal{E}_{\pi(1)} \circ \cdots \circ \mathcal{E}_{\pi(k)}$ maps
+    $1_{\mathrm{sys}} \otimes p_{\emptyset}$ to
+    $1_{\mathrm{sys}} \otimes p_{(\pi(1),\ldots,\pi(k))} = 1_{\mathrm{sys}} \otimes p_{\pi}$.
+    \item \textbf{Distinctness.} For $\pi \neq \sigma$, $p_{\pi} \neq p_{\sigma}$
+    and $p_{\pi} \cdot p_{\sigma} = 0$. Therefore $\lvert H_k / \equiv \rvert = k!$.
+\end{enumerate}
+
+\textbf{Corollary.} $\dim(Z_R) \ge k!$ and $\Delta S_{\mathrm{records}} \ge \log(k!)
+\sim k\log k$. The entropy of measurement is structural, not thermodynamic.
+
+\section*{Appendix C: Changelog}
+
+\begin{itemize}[leftmargin=1.5em,nosep]
+\item \textbf{v2.0-PLEC (April 2026).} Reframed entire derivation around PLEC schema:
+admissibility fixes the licensable bookkeeping class, PLEC selects the realized minimum,
+measurement is regime exit from coherent to record-locked admissible class. Added shared
+canonical box, wayfinder box, canonical PLEC schema (definitions), epistemic tagging
+discipline section. Reformatted bridge boxes around Sol\`er and Gleason as imports
+closing an APF-prepared admissible class. Cleaned formatting throughout (v1.0 had
+literal-escape artifacts in math mode and broken section spacing).
+\item \textbf{v1.0 (February 2026).} Record-locking channels (T9 / L3-$\mu$).
+Decoherence as progressive capacity commitment. Matter-content connection
+(quantum structure jointly constrains particle content). Regime-assumptions
+appendix. Forward references to Paper~7 (ACTION) and Paper~4 \S 7
+($\sin^2\theta_W$).
+\end{itemize}
+
+\end{document}
