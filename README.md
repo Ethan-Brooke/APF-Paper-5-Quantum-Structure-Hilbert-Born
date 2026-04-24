@@ -12,7 +12,7 @@
 
 ## Why this codebase exists
 
-Hilbert space structure, Born rule, tensor products, CPTP formalism, measurement structure as derived from finite enforceability. Draft .tex (664 lines, v1.0) extant; PLEC propagation pending.
+Standard apparatus of quantum mechanics derived from PLEC plus three paper-specific hypotheses: linearity from coherence closure, complex Hilbert emergence via Frobenius trichotomy, T_tensor + T_Born (via Gleason) + T_Hermitian + T_CPTP (with Stinespring dilation interface-mediator interpretation), measurement as Type III regime exit via record-locking channels, spectral-action internalization, UV completion as Type IV exit. Version 2.0-PLEC main paper (12pp) + Technical Supplement v1.0 (31pp, 2026-04-19 self-contained formal companion).
 
 This repository is the executable proof.
 
